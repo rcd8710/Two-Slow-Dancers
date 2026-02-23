@@ -1,11 +1,13 @@
+from frontend.dancers import dancer1,dancer2
 import pygame
-from frontend.stage import stagedraw
+
+
 pygame.init()
 width = 500
 height = 500
 screen = pygame.display.set_mode((width, height)) 
-pygame.display.set_caption("My Game")
-
+pygame.display.set_caption("Two slow dancer")
+clock = pygame.time.Clock()
 gamerun = True
 while gamerun:
     for event in pygame.event.get():
@@ -13,8 +15,14 @@ while gamerun:
             gamerun = False
         
     screen.fill(("white"))
-    stagedraw.center = (250, 250)
-    pygame.draw.rect(screen,"ivory",stagedraw)
+    
+    pygame.draw.rect(screen,"ivory", (0,0,499,499))
+    dancer1.drawDancer(screen)
+    dancer2.drawDancer(screen)
+    dancer1.mirror()
+    dancer2.mirror()
+
+    clock.tick(60)
     pygame.display.flip()
 
 pygame.quit()
